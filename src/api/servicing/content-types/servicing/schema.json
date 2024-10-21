@@ -185,6 +185,30 @@
       ],
       "default": "Pending",
       "required": true
+    },
+    "CustomerOldOrNew": {
+      "type": "string"
+    },
+    "ChooseServiceGiven": {
+      "type": "enumeration",
+      "enum": [
+        "Store Service",
+        "Home Service"
+      ],
+      "required": false
+    },
+    "ServiceTypeGiven": {
+      "type": "enumeration",
+      "enum": [
+        "Checking",
+        "Free Service",
+        "Standard Service",
+        "Full Service",
+        "Full Service & Wash",
+        "Over Oiling & Checking",
+        "Others"
+      ],
+      "required": false
     }
   }
 }

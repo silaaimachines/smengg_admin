@@ -708,6 +708,21 @@ export interface ApiServicingServicing extends Struct.CollectionTypeSchema {
     ServiceStatus: Schema.Attribute.Enumeration<['Pending', 'Completed']> &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'Pending'>;
+    CustomerOldOrNew: Schema.Attribute.String;
+    ChooseServiceGiven: Schema.Attribute.Enumeration<
+      ['Store Service', 'Home Service']
+    >;
+    ServiceTypeGiven: Schema.Attribute.Enumeration<
+      [
+        'Checking',
+        'Free Service',
+        'Standard Service',
+        'Full Service',
+        'Full Service & Wash',
+        'Over Oiling & Checking',
+        'Others',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
