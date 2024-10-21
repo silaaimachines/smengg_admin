@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "items",
+  "info": {
+    "singularName": "item",
+    "pluralName": "items",
+    "displayName": "Items",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "ItemName": {
+      "type": "string",
+      "required": true
+    },
+    "ItemPrice": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "servicings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::servicing.servicing",
+      "mappedBy": "items"
+    }
+  }
+}

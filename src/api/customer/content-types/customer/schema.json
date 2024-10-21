@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "customers",
+  "info": {
+    "singularName": "customer",
+    "pluralName": "customers",
+    "displayName": "Customers",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "CustomerID": {
+      "type": "string"
+    },
+    "CustomerName": {
+      "type": "string"
+    },
+    "CustomerNumber": {
+      "type": "biginteger"
+    },
+    "WhatsAppNumber": {
+      "type": "biginteger"
+    },
+    "CustomerAddress": {
+      "type": "text"
+    },
+    "CustomerCity": {
+      "type": "string"
+    },
+    "PendingAmount": {
+      "type": "integer"
+    },
+    "servicings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::servicing.servicing",
+      "mappedBy": "customer"
+    }
+  }
+}
