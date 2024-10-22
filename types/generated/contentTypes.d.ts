@@ -495,6 +495,67 @@ export interface PluginUsersPermissionsUser
   };
 }
 
+export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
+  collectionName: 'brands';
+  info: {
+    singularName: 'brand';
+    pluralName: 'brands';
+    displayName: 'Brand';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'Name'> & Schema.Attribute.Required;
+    Logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::brand.brand'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
+  collectionName: 'categories';
+  info: {
+    singularName: 'category';
+    pluralName: 'categories';
+    displayName: 'Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'Name'> & Schema.Attribute.Required;
+    Images: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category.category'
+    > &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCustomerCustomer extends Struct.CollectionTypeSchema {
   collectionName: 'customers';
   info: {
@@ -568,6 +629,70 @@ export interface ApiItemItem extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::item.item'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProductProduct extends Struct.CollectionTypeSchema {
+  collectionName: 'products';
+  info: {
+    singularName: 'product';
+    pluralName: 'products';
+    displayName: 'Product';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'Name'> & Schema.Attribute.Required;
+    Description: Schema.Attribute.RichText & Schema.Attribute.Required;
+    BasePrice: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    DiscountPrice: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      >;
+    Quantity: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    Images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    > &
+      Schema.Attribute.Required;
+    Featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
+    brand: Schema.Attribute.Relation<'manyToOne', 'api::brand.brand'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product.product'
+    > &
       Schema.Attribute.Private;
   };
 }
@@ -735,6 +860,63 @@ export interface ApiServicingServicing extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::servicing.servicing'
     > &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSliderSlider extends Struct.CollectionTypeSchema {
+  collectionName: 'sliders';
+  info: {
+    singularName: 'slider';
+    pluralName: 'sliders';
+    displayName: 'Slider';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    Image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::slider.slider'
+    > &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTagTag extends Struct.CollectionTypeSchema {
+  collectionName: 'tags';
+  info: {
+    singularName: 'tag';
+    pluralName: 'tags';
+    displayName: 'Tag';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'Name'> & Schema.Attribute.Required;
+    products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'> &
       Schema.Attribute.Private;
   };
 }
@@ -1121,9 +1303,14 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::brand.brand': ApiBrandBrand;
+      'api::category.category': ApiCategoryCategory;
       'api::customer.customer': ApiCustomerCustomer;
       'api::item.item': ApiItemItem;
+      'api::product.product': ApiProductProduct;
       'api::servicing.servicing': ApiServicingServicing;
+      'api::slider.slider': ApiSliderSlider;
+      'api::tag.tag': ApiTagTag;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;
