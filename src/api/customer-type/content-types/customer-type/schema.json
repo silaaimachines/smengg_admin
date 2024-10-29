@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "customer_types",
+  "info": {
+    "singularName": "customer-type",
+    "pluralName": "customer-types",
+    "displayName": "CustomerType",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Name",
+      "required": true
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "customer_type"
+    }
+  }
+}

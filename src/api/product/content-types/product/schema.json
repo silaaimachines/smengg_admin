@@ -27,12 +27,10 @@
     },
     "BasePrice": {
       "type": "decimal",
-      "required": true,
-      "min": 0
+      "required": true
     },
     "DiscountPrice": {
-      "type": "decimal",
-      "min": 0
+      "type": "decimal"
     },
     "Quantity": {
       "type": "integer",
@@ -41,15 +39,15 @@
       "default": 0
     },
     "Images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true,
-      "required": true
+      ]
     },
     "Featured": {
       "type": "boolean",
@@ -72,6 +70,12 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::brand.brand",
+      "inversedBy": "products"
+    },
+    "customer_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer-type.customer-type",
       "inversedBy": "products"
     }
   }

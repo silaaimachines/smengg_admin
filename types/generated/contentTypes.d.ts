@@ -595,6 +595,40 @@ export interface ApiCustomerCustomer extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCustomerTypeCustomerType
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'customer_types';
+  info: {
+    singularName: 'customer-type';
+    pluralName: 'customer-types';
+    displayName: 'CustomerType';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'Name'> & Schema.Attribute.Required;
+    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::customer-type.customer-type'
+    > &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiItemItem extends Struct.CollectionTypeSchema {
   collectionName: 'items';
   info: {
@@ -648,21 +682,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     Name: Schema.Attribute.String & Schema.Attribute.Required;
     slug: Schema.Attribute.UID<'Name'> & Schema.Attribute.Required;
     Description: Schema.Attribute.RichText & Schema.Attribute.Required;
-    BasePrice: Schema.Attribute.Decimal &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      >;
-    DiscountPrice: Schema.Attribute.Decimal &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      >;
+    BasePrice: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    DiscountPrice: Schema.Attribute.Decimal;
     Quantity: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
@@ -681,6 +702,10 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
     tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
     brand: Schema.Attribute.Relation<'manyToOne', 'api::brand.brand'>;
+    customer_type: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::customer-type.customer-type'
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -1306,6 +1331,7 @@ declare module '@strapi/strapi' {
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
       'api::customer.customer': ApiCustomerCustomer;
+      'api::customer-type.customer-type': ApiCustomerTypeCustomerType;
       'api::item.item': ApiItemItem;
       'api::product.product': ApiProductProduct;
       'api::servicing.servicing': ApiServicingServicing;
