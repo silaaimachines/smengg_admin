@@ -501,6 +501,7 @@ export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
     singularName: 'brand';
     pluralName: 'brands';
     displayName: 'Brand';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -511,6 +512,7 @@ export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
     Logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Schema.Attribute.Required;
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    Banner: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -540,6 +542,10 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
     slug: Schema.Attribute.UID<'Name'> & Schema.Attribute.Required;
     Images: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    MainCategory: Schema.Attribute.Enumeration<
+      ['Sewing Machine', 'Spare Parts']
+    > &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -706,6 +712,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::customer-type.customer-type'
     >;
+    AmazonAffiliateLink: Schema.Attribute.String;
+    FlipkartAffiliateLink: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -736,81 +744,12 @@ export interface ApiServicingServicing extends Struct.CollectionTypeSchema {
   attributes: {
     JobNumber: Schema.Attribute.BigInteger & Schema.Attribute.Unique;
     CustomerID: Schema.Attribute.String;
-    ChooseService: Schema.Attribute.Enumeration<
-      ['Store Service', 'Home Service']
-    > &
-      Schema.Attribute.Required;
-    CustomerName: Schema.Attribute.String & Schema.Attribute.Required;
-    CustomerNumber: Schema.Attribute.BigInteger & Schema.Attribute.Required;
-    WhatsAppNumber: Schema.Attribute.BigInteger;
-    CustomerAddress: Schema.Attribute.Text & Schema.Attribute.Required;
+    CustomerName: Schema.Attribute.String;
+    CustomerNumber: Schema.Attribute.BigInteger;
+    CustomerAddress: Schema.Attribute.Text;
     CustomerCity: Schema.Attribute.String;
-    CustomerType: Schema.Attribute.Enumeration<
-      [
-        'Personal',
-        'Profession',
-        'Tailor',
-        'Fabricator',
-        'Institution',
-        'Others',
-      ]
-    > &
-      Schema.Attribute.Required;
-    ServiceType: Schema.Attribute.Enumeration<
-      [
-        'Checking',
-        'Free Service',
-        'Standard Service',
-        'Full Service',
-        'Full Service & Wash',
-        'Over Oiling & Checking',
-        'Others',
-      ]
-    > &
-      Schema.Attribute.Required;
-    MachineType: Schema.Attribute.Enumeration<
-      [
-        'Bag Closer',
-        'Domestic SM',
-        'Embroidery / 130K',
-        'Interlock SM',
-        'Industrial / Locksmith',
-        'Leather / 31K',
-        'Link Deluxe SM',
-        'Umbrella / TA1 / 103K / 95K',
-        'Others',
-      ]
-    > &
-      Schema.Attribute.Required;
-    MachineBrand: Schema.Attribute.Enumeration<
-      [
-        'Conark',
-        'Geminy',
-        'Jack',
-        'Merritt',
-        'Revo',
-        'Samrat',
-        'Singer',
-        'Usha',
-        'Others',
-      ]
-    > &
-      Schema.Attribute.Required;
-    ModelName: Schema.Attribute.String;
+    ModelNumber: Schema.Attribute.String;
     EngineNumber: Schema.Attribute.String;
-    Problem: Schema.Attribute.Enumeration<
-      [
-        'Handle Jam',
-        'Needle Breaking',
-        'No Stitch',
-        'Rusted',
-        'Stitch False',
-        'Thread Lachhi',
-        'Thread Breaking',
-        'Others',
-      ]
-    > &
-      Schema.Attribute.Required;
     DueDate: Schema.Attribute.Date;
     Notes: Schema.Attribute.Text;
     ServicingDoneByTechnician: Schema.Attribute.String &
@@ -855,9 +794,6 @@ export interface ApiServicingServicing extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'0'>;
     DueDateForPayment: Schema.Attribute.Date;
     customer: Schema.Attribute.Relation<'manyToOne', 'api::customer.customer'>;
-    ServiceStatus: Schema.Attribute.Enumeration<['Pending', 'Completed']> &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'Pending'>;
     CustomerOldOrNew: Schema.Attribute.String;
     ChooseServiceGiven: Schema.Attribute.Enumeration<
       ['Store Service', 'Home Service']
@@ -873,6 +809,13 @@ export interface ApiServicingServicing extends Struct.CollectionTypeSchema {
         'Others',
       ]
     >;
+    ChooseService: Schema.Attribute.String;
+    CustomerType: Schema.Attribute.String;
+    ServiceType: Schema.Attribute.String;
+    MachineType: Schema.Attribute.String;
+    MachineBrand: Schema.Attribute.String;
+    Problem: Schema.Attribute.String;
+    ServiceStatus: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -895,6 +838,7 @@ export interface ApiSliderSlider extends Struct.CollectionTypeSchema {
     singularName: 'slider';
     pluralName: 'sliders';
     displayName: 'Slider';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -903,6 +847,7 @@ export interface ApiSliderSlider extends Struct.CollectionTypeSchema {
     Name: Schema.Attribute.String & Schema.Attribute.Required;
     Image: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
+    SliderURL: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

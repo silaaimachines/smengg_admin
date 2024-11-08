@@ -19,106 +19,26 @@
     "CustomerID": {
       "type": "string"
     },
-    "ChooseService": {
-      "type": "enumeration",
-      "enum": [
-        "Store Service",
-        "Home Service"
-      ],
-      "required": true
-    },
     "CustomerName": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "CustomerNumber": {
       "type": "biginteger",
-      "required": true
-    },
-    "WhatsAppNumber": {
-      "type": "biginteger"
+      "required": false
     },
     "CustomerAddress": {
       "type": "text",
-      "required": true
+      "required": false
     },
     "CustomerCity": {
       "type": "string"
     },
-    "CustomerType": {
-      "type": "enumeration",
-      "enum": [
-        "Personal",
-        "Profession",
-        "Tailor",
-        "Fabricator",
-        "Institution",
-        "Others"
-      ],
-      "required": true
-    },
-    "ServiceType": {
-      "type": "enumeration",
-      "enum": [
-        "Checking",
-        "Free Service",
-        "Standard Service",
-        "Full Service",
-        "Full Service & Wash",
-        "Over Oiling & Checking",
-        "Others"
-      ],
-      "required": true
-    },
-    "MachineType": {
-      "type": "enumeration",
-      "enum": [
-        "Bag Closer",
-        "Domestic SM",
-        "Embroidery / 130K",
-        "Interlock SM",
-        "Industrial / Locksmith",
-        "Leather / 31K",
-        "Link Deluxe SM",
-        "Umbrella / TA1 / 103K / 95K",
-        "Others"
-      ],
-      "required": true
-    },
-    "MachineBrand": {
-      "type": "enumeration",
-      "enum": [
-        "Conark",
-        "Geminy",
-        "Jack",
-        "Merritt",
-        "Revo",
-        "Samrat",
-        "Singer",
-        "Usha",
-        "Others"
-      ],
-      "required": true
-    },
-    "ModelName": {
+    "ModelNumber": {
       "type": "string"
     },
     "EngineNumber": {
       "type": "string"
-    },
-    "Problem": {
-      "type": "enumeration",
-      "enum": [
-        "Handle Jam",
-        "Needle Breaking",
-        "No Stitch",
-        "Rusted",
-        "Stitch False",
-        "Thread Lachhi",
-        "Thread Breaking",
-        "Others"
-      ],
-      "required": true
     },
     "DueDate": {
       "type": "date"
@@ -177,15 +97,6 @@
       "target": "api::customer.customer",
       "inversedBy": "servicings"
     },
-    "ServiceStatus": {
-      "type": "enumeration",
-      "enum": [
-        "Pending",
-        "Completed"
-      ],
-      "default": "Pending",
-      "required": true
-    },
     "CustomerOldOrNew": {
       "type": "string"
     },
@@ -209,6 +120,27 @@
         "Others"
       ],
       "required": false
+    },
+    "ChooseService": {
+      "type": "string"
+    },
+    "CustomerType": {
+      "type": "string"
+    },
+    "ServiceType": {
+      "type": "string"
+    },
+    "MachineType": {
+      "type": "string"
+    },
+    "MachineBrand": {
+      "type": "string"
+    },
+    "Problem": {
+      "type": "string"
+    },
+    "ServiceStatus": {
+      "type": "string"
     }
   }
 }

@@ -37,6 +37,14 @@
       "relation": "oneToMany",
       "target": "api::product.product",
       "mappedBy": "category"
+    },
+    "MainCategory": {
+      "type": "enumeration",
+      "enum": [
+        "Sewing Machine",
+        "Spare Parts"
+      ],
+      "required": true
     }
   }
 }

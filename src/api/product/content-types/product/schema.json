@@ -77,6 +77,12 @@
       "relation": "manyToOne",
       "target": "api::customer-type.customer-type",
       "inversedBy": "products"
+    },
+    "AmazonAffiliateLink": {
+      "type": "string"
+    },
+    "FlipkartAffiliateLink": {
+      "type": "string"
     }
   }
 }
