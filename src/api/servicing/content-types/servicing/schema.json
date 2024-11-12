@@ -46,10 +46,6 @@
     "Notes": {
       "type": "text"
     },
-    "ServicingDoneByTechnician": {
-      "type": "string",
-      "default": "Servicing Done by Technician"
-    },
     "items": {
       "type": "relation",
       "relation": "manyToMany",
@@ -59,10 +55,6 @@
     "ExtraWork": {
       "type": "text",
       "required": false
-    },
-    "BillingInformation": {
-      "type": "string",
-      "default": "Billing Information"
     },
     "TotalAmount": {
       "type": "biginteger",
@@ -100,27 +92,6 @@
     "CustomerOldOrNew": {
       "type": "string"
     },
-    "ChooseServiceGiven": {
-      "type": "enumeration",
-      "enum": [
-        "Store Service",
-        "Home Service"
-      ],
-      "required": false
-    },
-    "ServiceTypeGiven": {
-      "type": "enumeration",
-      "enum": [
-        "Checking",
-        "Free Service",
-        "Standard Service",
-        "Full Service",
-        "Full Service & Wash",
-        "Over Oiling & Checking",
-        "Others"
-      ],
-      "required": false
-    },
     "ChooseService": {
       "type": "string"
     },
@@ -140,6 +111,15 @@
       "type": "string"
     },
     "ServiceStatus": {
+      "type": "string"
+    },
+    "ItemsUsed": {
+      "type": "text"
+    },
+    "ChooseServiceGiven": {
+      "type": "string"
+    },
+    "ServiceTypeGiven": {
       "type": "string"
     }
   }

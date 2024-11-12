@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invoices",
+  "info": {
+    "singularName": "invoice",
+    "pluralName": "invoices",
+    "displayName": "Invoice",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": false
+    },
+    "Address": {
+      "type": "text"
+    },
+    "MobileNo": {
+      "type": "biginteger",
+      "required": false
+    },
+    "Date": {
+      "type": "date"
+    },
+    "Particular": {
+      "type": "text"
+    },
+    "InvoiceNumber": {
+      "type": "biginteger"
+    },
+    "TotalAmount": {
+      "type": "decimal"
+    }
+  }
+}
