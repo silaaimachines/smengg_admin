@@ -83,6 +83,20 @@
     },
     "FlipkartAffiliateLink": {
       "type": "string"
+    },
+    "Color": {
+      "type": "string",
+      "required": false
+    },
+    "Material": {
+      "type": "string",
+      "required": false
+    },
+    "Dimension": {
+      "type": "string"
+    },
+    "Weight": {
+      "type": "string"
     }
   }
 }

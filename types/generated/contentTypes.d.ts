@@ -598,6 +598,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     BasePrice: Schema.Attribute.Decimal & Schema.Attribute.Required;
     brand: Schema.Attribute.Relation<'manyToOne', 'api::brand.brand'>;
     category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    Color: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -606,6 +607,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'api::customer-type.customer-type'
     >;
     Description: Schema.Attribute.RichText & Schema.Attribute.Required;
+    Dimension: Schema.Attribute.String;
     DiscountPrice: Schema.Attribute.Decimal;
     Featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     FlipkartAffiliateLink: Schema.Attribute.String;
@@ -620,6 +622,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'api::product.product'
     > &
       Schema.Attribute.Private;
+    Material: Schema.Attribute.String;
     Name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     Quantity: Schema.Attribute.Integer &
@@ -636,6 +639,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Weight: Schema.Attribute.String;
   };
 }
 
