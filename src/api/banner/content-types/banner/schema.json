@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "sliders",
+  "collectionName": "banners",
   "info": {
-    "singularName": "slider",
-    "pluralName": "sliders",
-    "displayName": "Slider",
+    "singularName": "banner",
+    "pluralName": "banners",
+    "displayName": "Banner",
     "description": ""
   },
   "options": {
@@ -12,21 +12,24 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Name": {
-      "type": "string",
-      "required": true
-    },
     "Image": {
       "type": "media",
       "multiple": false,
       "required": true,
       "allowedTypes": [
         "images",
-        "files"
+        "files",
+        "videos",
+        "audios"
       ]
     },
-    "SliderURL": {
-      "type": "string"
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "Url": {
+      "type": "string",
+      "required": false
     }
   }
 }
